@@ -17,8 +17,8 @@ def index():
 
 @app.route('/closures')
 def closures():
-  d = datetime.datetime.today()
-  scraperwiki_query = "https://api.scraperwiki.com/api/1.0/datastore/sqlite?format=jsondict&name=denver_streets_and_sidewalks&query=select%20*%20from%20%60swdata%60%20where%20start_date%20%3E%20date('"+ d.strftime('%Y-%m-%d') +"')"
+  d = datetime.datetime.today().strftime('%Y-%m-%d')
+  scraperwiki_query = "https://api.scraperwiki.com/api/1.0/datastore/sqlite?format=jsondict&name=denver_streets_and_sidewalks&query=select%20*%20from%20%60swdata%60%20where%20start_date%20%3C%20date('"+ d +"')%20and%20end_date%20%3E%20date('" + d + "')"
 
   scraperwiki_response = urllib2.urlopen(scraperwiki_query).read()
   response = Response(scraperwiki_response, status=200, mimetype='application/json')
