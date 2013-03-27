@@ -1,4 +1,4 @@
-# http://www.geoalchemy.org/tutorial.html
+(From http://www.geoalchemy.org/tutorial.html)
 ```sh
 sudo su postgres
 createdb -E UNICODE denver_streets
