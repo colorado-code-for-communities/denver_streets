@@ -1,0 +1,27 @@
+# Compiled source #
+###################
+*.pyc
+*.egg-info
+
+
+# Editor-specific project files #
+#################################
+.project
+.pydevproject
+src/**
+
+
+# Logs, DBs, and settings #
+###########################
+*.sqlite
+*.db
+*.log
+
+# Test files #
+##############
+.coverage
+
+# OS specific files #
+#####################
+.DS_Store
+Thumbs.db
