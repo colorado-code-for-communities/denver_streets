@@ -1,5 +1,6 @@
 # http://www.geoalchemy.org/tutorial.html
-```sudo su postgres
+```sh
+sudo su postgres
 createdb -E UNICODE denver_streets
 createlang plpgsql denver_streets
 
