@@ -25,3 +25,5 @@ src/**
 #####################
 .DS_Store
 Thumbs.db
+
+.venv
