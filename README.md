@@ -23,7 +23,7 @@ sudo su postgres
 createdb -E UNICODE denver_streets
 createlang plpgsql denver_streets
 
-psql -d denver_streets -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgres.sql
+psql -d denver_streets -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
 psql -d denver_streets -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
 
 # Create a new user if gisuser does not exist already
