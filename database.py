@@ -11,3 +11,9 @@ Base.query = session.query_property()
 def init_db():
     import models
     Base.metadata.create_all(bind=engine)
+    session.commit()
+
+def drop_db():
+    import models
+    session.close()
+    Base.metadata.drop_all(bind=engine)
