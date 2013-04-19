@@ -21,8 +21,9 @@ http://0.0.0.0:5000 in your browser
 =======
 Database setup
 (From http://www.geoalchemy.org/tutorial.html)
-```sh
 <!-- sudo su postgres -->
+
+```sh
 createdb -E UNICODE denver_streets
 createlang plpgsql denver_streets
 
