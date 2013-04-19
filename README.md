@@ -3,6 +3,21 @@ denver_streets
 
 API for Denver Streets/Sidewalks closures
 
+Using
+==============
+
+GET: `/`
+
+GET: `/closures`
+
+Returns a list of current closures.
+
+GET: `/closures?current_location=??&radius=1`
+
+Returns all closures within a radius in miles (default radius will be equal to 1).
+
+Development
+==============
 Pivotal Tracker:
 https://www.pivotaltracker.com/projects/768887
 
@@ -40,3 +55,11 @@ grant all on spatial_ref_sys to "gisuser";
 grant all on geometry_columns to "gisuser";
 \q
 ```
+
+Open up your python REPL in the app root directory and type the following:
+```python
+import database
+database.init_db()
+```
+
+This will create the tables.
