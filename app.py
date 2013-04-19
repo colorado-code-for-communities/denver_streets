@@ -10,10 +10,6 @@ def shutdown_session(exception=None):
 
 app = Flask(__name__)
 
-@app.route('/hello')
-def hello():
-  return 'Hello world'
-
 @app.route('/')
 def index():
   response_data = json.dumps({ 'closures_href': url_for('closures') })
