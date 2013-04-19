@@ -55,3 +55,11 @@ grant all on spatial_ref_sys to "gisuser";
 grant all on geometry_columns to "gisuser";
 \q
 ```
+
+Open up your python REPL in the app root directory and type the following:
+```python
+import database
+database.init_db()
+```
+
+This will create the tables.
