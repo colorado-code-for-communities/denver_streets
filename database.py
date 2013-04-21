@@ -2,7 +2,7 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine('postgresql://gisuser@localhost/denver_streets', echo=True)
+engine = create_engine('postgresql://gisuser:abc123@localhost/denver_streets', echo=True)
 session = scoped_session(sessionmaker(bind=engine))
 
 Base = declarative_base()
