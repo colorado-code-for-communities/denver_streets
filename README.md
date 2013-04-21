@@ -63,3 +63,5 @@ database.init_db()
 ```
 
 This will create the tables.
+
+To drop tables, type ```database.drop_db()```
