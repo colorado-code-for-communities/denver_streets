@@ -1,6 +1,14 @@
 from sqlalchemy import Column, Integer, String, Date, Time
-from database import Base
 from datetime import datetime
+import os
+try:
+    if os.environ['FLASK_ENV'] == 'test':
+        from database_test import Base
+    else:
+        from database import Base
+except:
+    from database import Base
+
 
 class Closure(Base):
     __tablename__ = 'closures'

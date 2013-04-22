@@ -2,6 +2,7 @@ import unittest
 import json, os
 import database_test
 from lib import importer
+import models
 
 # read_closures() should return import_test_fixtures.txt
 fixtures_dir = os.getcwd() + "/tests/fixtures"
@@ -17,7 +18,7 @@ class ImporterTests(unittest.TestCase):
 
     def testImportClosure(self):
         importer.import_closures()
-        assert(true).equals(true)
+        self.assertEquals(len(database_test.session.query(models.Closure).all()), 6)
 
 if __name__ == '__main__':
     unittest.main()
