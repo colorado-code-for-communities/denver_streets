@@ -1,6 +1,9 @@
-import app
 import unittest
 import json, os
+import os, sys
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,parent_dir)
+import app
 from lib import importer
 
 fixtures_dir = os.getcwd() + "/tests/fixtures"
