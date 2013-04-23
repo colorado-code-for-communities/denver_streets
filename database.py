@@ -1,6 +1,7 @@
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import declarative_base
+import os
 
 try:
     if os.environ['FLASK_ENV'] == 'test':
@@ -39,6 +40,6 @@ def destroy_db():
     engine = create_engine('postgresql://postgres@localhost/postgres')
     conn = engine.connect()
     conn.execute('commit')
-    conn.execute('drop database' + database_name)
+    conn.execute('drop database ' + database_name)
     conn.close()
 

@@ -29,5 +29,3 @@ def import_closure(closure):
     print "adding " + closure['location']
     session.add(cl)
     session.commit()
-
-import_closures()
