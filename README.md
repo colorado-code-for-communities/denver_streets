@@ -65,3 +65,6 @@ database.init_db()
 This will create the tables.
 
 To drop tables, type ```database.drop_db()```
+
+
+Tests are currently a giant mess. Sorry! To run tests, run `./run_tests`. 
