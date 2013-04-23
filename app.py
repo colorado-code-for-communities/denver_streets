@@ -2,11 +2,12 @@ from flask import Flask, Response, url_for, request, json
 import os
 import urllib2
 import datetime
-import models
 import database
+import models
 
 def shutdown_session(exception=None):
     session.remove()
+
 
 app = Flask(__name__)
 

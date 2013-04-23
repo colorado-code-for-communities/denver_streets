@@ -3,10 +3,15 @@ from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import declarative_base
 
 try:
-    engine = create_engine('postgresql://gisuser:abc123@localhost/denver_streets')
+    if os.environ['FLASK_ENV'] == 'test':
+        database_name = "denver_streets_test"
+    else:
+        database_name = "denver_streets"
 except:
-    setup_db()
-    engine = create_engine('postgresql://gisuser:abc123@localhost/denver_streets')
+    database_name = 'denver_streets'
+    # regular db
+
+engine = create_engine('postgresql://gisuser:abc123@localhost/' + database_name)
 
 session = scoped_session(sessionmaker(bind=engine))
 
@@ -27,12 +32,13 @@ def setup_db():
     engine = create_engine('postgresql://postgres@localhost/postgres')
     conn = engine.connect()
     conn.execute('commit')
-    conn.execute('create database denver_streets')
+    conn.execute('create database ' + database_name)
     conn.close()
 
 def destroy_db():
     engine = create_engine('postgresql://postgres@localhost/postgres')
     conn = engine.connect()
     conn.execute('commit')
-    conn.execute('drop database denver_streets')
+    conn.execute('drop database' + database_name)
     conn.close()
+

@@ -1,8 +1,11 @@
 import import_parent
-import database
+import app
 import requests
 import datetime
-from models import Closure
+import json
+
+Closure = app.models.Closure
+session = app.database.session
 
 def read_closures():
     d = datetime.datetime.today().strftime('%Y-%m-%d')
@@ -10,3 +13,21 @@ def read_closures():
     r = requests.get(scraperwiki_query)
     return r.text
 
+def import_closures():
+    closure_json = json.loads(read_closures())
+    for closure in closure_json:
+        import_closure(closure)
+
+def import_closure(closure):
+    cl = Closure(
+            end_date=closure['end_date'],
+            start_date=closure['start_date'],
+            location=closure['location'],
+            closure_type=closure['type'],
+            purpose=closure['purpose']
+            )
+    print "adding " + closure['location']
+    session.add(cl)
+    session.commit()
+
+import_closures()

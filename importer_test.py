@@ -14,7 +14,7 @@ class ImporterTests(unittest.TestCase):
         database_test.init_db()
 
     def tearDown(self):
-        database_test.drop_db()
+        database_test.destroy_db()
 
     def testImportClosure(self):
         importer.import_closures()
