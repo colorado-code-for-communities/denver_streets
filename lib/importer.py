@@ -13,8 +13,8 @@ def read_closures():
     r = requests.get(scraperwiki_query)
     return r.text
 
-def import_closures():
-    closure_json = json.loads(read_closures())
+def import_closures(closure_json):
+    closure_json = json.loads(closure_json)
     for closure in closure_json:
         import_closure(closure)
 

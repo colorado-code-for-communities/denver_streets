@@ -10,7 +10,7 @@ models = app.models
 class ImporterTests(unittest.TestCase):
     def setUp(self):
         # set up test db
-        self.closure_json = json.loads(open(fixtures_dir + '/importer_test_fixtures.txt').read())
+        self.closure_json = open(fixtures_dir + '/importer_test_fixtures.txt').read()
         database.init_db()
 
     def tearDown(self):
@@ -18,7 +18,7 @@ class ImporterTests(unittest.TestCase):
 
     def testImportClosure(self):
         self.setUp()
-        importer.import_closures()
+        importer.import_closures(self.closure_json)
         self.assertEquals(len(database.session.query(models.Closure).all()), 6)
         self.tearDown()
 
