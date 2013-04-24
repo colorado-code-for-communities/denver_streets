@@ -1,5 +1,9 @@
+import app
 from sqlalchemy import Column, Integer, String, Date, Time
-from database import Base
+from datetime import datetime
+import os
+
+Base = app.database.Base
 
 class Closure(Base):
     __tablename__ = 'closures'
@@ -13,8 +17,7 @@ class Closure(Base):
     start_time = Column(Time())
     end_time = Column(Time())
 
-    def __init__(self, name=None, location=None, closure_type=None, purpose="", start_date=None, end_date=None, start_time=None, end_time=None):
-        self.name = name
+    def __init__(self, location=None, closure_type=None, purpose="", start_date=datetime.now(), end_date=None, start_time=None, end_time=None):
         self.location = location
         self.closure_type = closure_type
         self.purpose = purpose
@@ -23,3 +26,5 @@ class Closure(Base):
         self.start_time = start_time
         self.end_time = end_time
 
+    def __repr__(self):
+        return '<Location %r>' % self.location

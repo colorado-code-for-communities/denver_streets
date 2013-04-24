@@ -1,0 +1,62 @@
+[
+    {
+        "end_date": "2013-07-30T00:00:00",
+        "lon": -104.98471790000001,
+        "location": "Evans_(Galapago to Bannock)   ",
+        "time": "24 hrs/day ",
+        "lat": 39.737566999999999,
+        "type": " ",
+        "start_date": "2012-11-05T00:00:00",
+        "purpose": "Bridge Construction "
+    },
+    {
+        "end_date": "2013-06-08T00:00:00",
+        "lon": -105.0060294,
+        "location": "Pecos St ",
+        "time": "24 hrs/day ",
+        "lat": 39.851979499999999,
+        "type": " ",
+        "start_date": "2012-11-08T00:00:00",
+        "purpose": "Bridge Construction "
+    },
+    {
+        "end_date": "2013-05-20T00:00:00",
+        "lon": -105.0553937,
+        "location": "W Dartmouth Ave (S Golden Way - Colgate Dr)   ",
+        "time": "24 hrs/day ",
+        "lat": 39.656907799999999,
+        "type": "Close 1st Traffic Lane ",
+        "start_date": "2012-11-19T00:00:00",
+        "purpose": "ROW Occupancy "
+    },
+    {
+        "end_date": "2013-06-30T00:00:00",
+        "lon": -105.00928279999999,
+        "location": "Wewatta, WB: 19th St to 16th St ",
+        "time": "24 hrs/day ",
+        "lat": 39.758336300000003,
+        "type": "Close 1st Traffic Lane,Peak Lane Closure ",
+        "start_date": "2013-01-01T00:00:00",
+        "purpose": "Site Work "
+    },
+    {
+        "end_date": "2013-12-31T00:00:00",
+        "lon": -105.0076131,
+        "location": "15th St: Boulder St to Platte St ",
+        "time": "24 hrs/day ",
+        "lat": 39.757755299999999,
+        "type": "Close 1st Traffic Lane, Close 2nd Traffic Lane, Peak Lane Closure, Close Parking Lane, Close Sidewalk ",
+        "start_date": "2013-01-01T00:00:00",
+        "purpose": "Site Work "
+    },
+    {
+        "end_date": "2013-06-30T00:00:00",
+        "lon": -104.98471790000001,
+        "location": "17th St, NB: Wewatta to Chestnut ",
+        "time": "24 hrs/day ",
+        "lat": 39.737566999999999,
+        "type": "Close 1st Traffic Lane, Peak Lane Closure, Close Sidewalk ",
+        "start_date": "2013-01-01T00:00:00",
+        "purpose": "Site Work "
+    }
+   ] 

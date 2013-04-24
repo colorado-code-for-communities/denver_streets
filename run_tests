@@ -1,0 +1,1 @@
+FLASK_ENV=test python tests/importer_test.py
