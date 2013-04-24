@@ -10,6 +10,7 @@ from lib import importer
 fixtures_dir = os.getcwd() + "/tests/fixtures"
 database = app.database
 models = app.models
+sys.stdout = open(os.devnull, 'w')
 
 class ImporterTests(unittest.TestCase):
     def setUp(self):
@@ -40,7 +41,9 @@ class ImporterTests(unittest.TestCase):
 
     def testImportClosureType(self):
         importer.import_closures(self.closure_json)
-        closures = database.session.query(models.Closure).filter(models.Closure.location.like('W Dartmouth%')).first()
+        closures = database.session.query(
+                models.Closure).filter(
+                models.Closure.location.like('W Dartmouth%')).first()
         self.assertEquals(closures.closure_type, 'Close 1st Traffic Lane')
 
 
