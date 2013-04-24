@@ -38,6 +38,11 @@ class ImporterTests(unittest.TestCase):
         self.assertEquals(closures[1].location, 'Pecos St')
         self.assertEquals(closures[2].location, 'W Dartmouth Ave (S Golden Way - Colgate Dr)')
 
+    def testImportClosureType(self):
+        importer.import_closures(self.closure_json)
+        closures = database.session.query(models.Closure).filter(models.Closure.location.like('W Dartmouth%')).first()
+        self.assertEquals(closures.closure_type, 'Close 1st Traffic Lane')
+
 
 if __name__ == '__main__':
     unittest.main()

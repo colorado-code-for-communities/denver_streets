@@ -23,7 +23,7 @@ def import_closure(closure):
             end_date=closure['end_date'],
             start_date=closure['start_date'],
             location=closure['location'].rstrip(),
-            closure_type=closure['type'],
+            closure_type=closure['type'].rstrip(),
             purpose=closure['purpose'],
             start_time=start_time(closure['time']),
             end_time=end_time(closure['time'])
