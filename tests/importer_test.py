@@ -31,5 +31,13 @@ class ImporterTests(unittest.TestCase):
         self.assertEquals(closure.start_time, datetime.time(0, 0, 0))
         self.assertEquals(closure.end_time, datetime.time(23, 59, 59))
 
+    def testImportClosureLocation(self):
+        importer.import_closures(self.closure_json)
+        closures = database.session.query(models.Closure).all()
+        self.assertEquals(closures[0].location, 'Evans_(Galapago to Bannock)')
+        self.assertEquals(closures[1].location, 'Pecos St')
+        self.assertEquals(closures[2].location, 'W Dartmouth Ave (S Golden Way - Colgate Dr)')
+
+
 if __name__ == '__main__':
     unittest.main()
