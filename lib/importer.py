@@ -24,8 +24,18 @@ def import_closure(closure):
             start_date=closure['start_date'],
             location=closure['location'],
             closure_type=closure['type'],
-            purpose=closure['purpose']
+            purpose=closure['purpose'],
+            start_time=start_time(closure['time']),
+            end_time=end_time(closure['time'])
             )
     print "adding " + closure['location']
     session.add(cl)
     session.commit()
+
+def start_time(time_str):
+    if '24 hrs' in time_str:
+        return datetime.time(0, 0, 0)
+
+def end_time(time_str):
+    if '24 hrs' in time_str:
+        return datetime.time(23, 59, 59)
