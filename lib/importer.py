@@ -24,7 +24,7 @@ def import_closure(closure):
             start_date=closure['start_date'],
             location=closure['location'].rstrip(),
             closure_type=closure['type'].rstrip(),
-            purpose=closure['purpose'],
+            purpose=closure['purpose'].rstrip(),
             start_time=start_time(closure['time']),
             end_time=end_time(closure['time'])
             )

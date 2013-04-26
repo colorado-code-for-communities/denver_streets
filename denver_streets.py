@@ -24,7 +24,12 @@ def index():
 
 @app.route('/closures')
 def closures():
-    closures = database.session.query(Closure).all()
+    if request.args.get('on_date'):
+        date_param = datetime.datetime.strptime(request.args.get('on_date'), "%Y-%m-%d")
+    else:
+        date_param = datetime.datetime.now()
+
+    closures = database.session.query(Closure).filter(Closure.start_date <= date_param, Closure.end_date >= date_param).all()
     closures_array = []
     for closure in closures:
         closures_array.append(closure.to_dict())
