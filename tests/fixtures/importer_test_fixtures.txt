@@ -20,7 +20,7 @@
         "purpose": "Bridge Construction "
     },
     {
-        "end_date": "2013-05-20T00:00:00",
+        "end_date": "2013-04-20T00:00:00",
         "lon": -105.0553937,
         "location": "W Dartmouth Ave (S Golden Way - Colgate Dr)   ",
         "time": "24 hrs/day ",
