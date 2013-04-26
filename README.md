@@ -42,8 +42,8 @@ Database setup
 createdb -E UNICODE denver_streets
 createlang plpgsql denver_streets
 
-psql -d denver_streets -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
-psql -d denver_streets -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
+psql -d denver_streets -f (your postgis install directory)/postgis.sql
+psql -d denver_streets -f (your postgis install directory)/spatial_ref_sys.sql
 
 # Create a new user if gisuser does not exist already
 createuser -P gisuser
@@ -64,7 +64,7 @@ database.init_db()
 
 This will create the tables.
 
-To drop tables, type ```database.drop_db()```
+To drop tables (not the database!), type ```database.drop_db()``` in said REPL session.
 
 
 Tests are currently a giant mess. Sorry! To run tests, run `./run_tests`. 
