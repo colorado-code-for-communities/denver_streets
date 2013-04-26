@@ -1,10 +1,13 @@
 Flask==0.9
 GeoAlchemy==0.7.1
 Jinja2==2.6
+PyYAML==3.10
 SQLAlchemy==0.8.0
 Werkzeug==0.8.3
 argparse==1.2.1
 distribute==0.6.31
+nltk==2.0.4
+numpy==1.7.1
 psycopg2==2.4.6
 requests==1.2.0
 wsgiref==0.1.2
