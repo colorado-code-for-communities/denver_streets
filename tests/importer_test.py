@@ -1,16 +1,7 @@
-import unittest
-import datetime, json
-import os, sys
+from test_helpers import *
 
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0,parent_dir)
-import denver_streets
-from lib import importer
-
-fixtures_dir = os.getcwd() + "/tests/fixtures"
 database = denver_streets.database
 models = denver_streets.models
-sys.stdout = open(os.devnull, 'w')
 
 class ImporterTests(unittest.TestCase):
     def setUp(self):
@@ -35,9 +26,9 @@ class ImporterTests(unittest.TestCase):
     def testImportClosureLocation(self):
         importer.import_closures(self.closure_json)
         closures = database.session.query(models.Closure).all()
-        self.assertEquals(closures[0].location, 'Evans_(Galapago to Bannock)')
-        self.assertEquals(closures[1].location, 'Pecos St')
-        self.assertEquals(closures[2].location, 'W Dartmouth Ave (S Golden Way - Colgate Dr)')
+        assert closures[0].location == 'Evans_(Galapago to Bannock)'
+        assert closures[1].location == 'Pecos St'
+        assert closures[2].location == 'W Dartmouth Ave (S Golden Way - Colgate Dr)'
 
     def testImportClosureType(self):
         importer.import_closures(self.closure_json)
