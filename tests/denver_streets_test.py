@@ -1,7 +1,6 @@
 from test_helpers import *
 
 database = denver_streets.database
-models = denver_streets.models
 
 class DenverStreetsTestCase(unittest.TestCase):
     def setUp(self):

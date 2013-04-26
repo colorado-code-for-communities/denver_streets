@@ -1,15 +1,17 @@
 from flask import Flask, Response, url_for, request, json
+from jinja2 import *
 import os
 import urllib2
 import datetime
 import database
 import models
+from models import *
 
 def shutdown_session(exception=None):
     session.remove()
 
-
 app = Flask(__name__)
+env = Environment(loader=PackageLoader('denver_streets', 'templates'))
 
 @app.route('/')
 def index():
@@ -22,11 +24,11 @@ def index():
 
 @app.route('/closures')
 def closures():
-    d = datetime.datetime.today().strftime('%Y-%m-%d')
-    scraperwiki_query = "https://api.scraperwiki.com/api/1.0/datastore/sqlite?format=jsondict&name=denver_streets_and_sidewalks&query=select%20*%20from%20%60swdata%60%20where%20start_date%20%3C%20date('"+ d +"')%20and%20end_date%20%3E%20date('" + d + "')"
-
-    scraperwiki_response = { 'items': json.loads(urllib2.urlopen(scraperwiki_query).read()) }
-    response = Response(json.dumps(scraperwiki_response), status=200, mimetype='application/json', headers={'Access-Control-Allow-Origin':'*'})
+    closures = database.session.query(Closure).all()
+    closures_array = []
+    for closure in closures:
+        closures_array.append(closure.to_dict())
+    response = Response(json.dumps({'items': closures_array}), status=200, mimetype='application/json', headers={'Access-Control-Allow-Origin':'*'})
     return response
 
 @app.route('/closures/<int:closure_id>')
