@@ -1,15 +1,15 @@
 import unittest
-import datetime
-import json, os
+import datetime, json
 import os, sys
+
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,parent_dir)
-import app
+import denver_streets
 from lib import importer
 
 fixtures_dir = os.getcwd() + "/tests/fixtures"
-database = app.database
-models = app.models
+database = denver_streets.database
+models = denver_streets.models
 sys.stdout = open(os.devnull, 'w')
 
 class ImporterTests(unittest.TestCase):

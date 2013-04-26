@@ -1,9 +1,9 @@
-import app
+import denver_streets
 from sqlalchemy import Column, Integer, String, Date, Time
 from datetime import datetime
 import os
 
-Base = app.database.Base
+Base = denver_streets.database.Base
 
 class Closure(Base):
     __tablename__ = 'closures'

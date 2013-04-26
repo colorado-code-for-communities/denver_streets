@@ -1,11 +1,11 @@
 import import_parent
-import app
+import denver_streets
 import requests
 import datetime
 import json
 
-Closure = app.models.Closure
-session = app.database.session
+Closure = denver_streets.models.Closure
+session = denver_streets.database.session
 
 def read_closures():
     d = datetime.datetime.today().strftime('%Y-%m-%d')
