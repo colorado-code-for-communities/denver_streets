@@ -21,6 +21,14 @@ class DenverStreetsTestCase(unittest.TestCase):
         result = self.app.get('/closures')
         closures = json.loads(result.data)['items']
         assert len(closures) == 6
+        location_evans = closures[0]
+        assert location_evans['location'] == 'Evans_(Galapago to Bannock)'
+        assert location_evans['start_date'] == '2012-11-05'
+        assert location_evans['end_date'] == '2013-07-30'
+        assert location_evans['closure_type'] == ''
+        assert location_evans['start_time'] == '00:00:00'
+        assert location_evans['end_time'] == '23:59:59'
+        assert location_evans['purpose'] == "Bridge Construction"
 
     def test_closure_by_date(self):
         ''
