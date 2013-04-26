@@ -41,7 +41,7 @@ class DenverStreetsTestCase(unittest.TestCase):
         assert 'W Dartmouth Ave (S Golden Way - Colgate Dr)' not in all_locations
 
     def test_closure_by_date(self):
-        result = self.app.get('/closures?start_date=2013-4-10&end_date=2013-4-11')
+        result = self.app.get('/closures?on_date=2013-04-10')
         closures = json.loads(result.data)['items']
         assert len(closures) == 6
 
