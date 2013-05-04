@@ -1,4 +1,4 @@
-denver_streets
+Denver Street Construction API
 ==============
 
 API for Denver Streets/Sidewalks closures
