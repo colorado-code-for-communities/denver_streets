@@ -3,16 +3,20 @@ from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import declarative_base
 from geoalchemy import *
 import os
+import yaml
+
+config = yaml.load(open('config.yaml', 'r'))
 
 try:
     if os.environ['FLASK_ENV'] == 'test':
-        database_name = "denver_streets_test"
-        database_user = 'gisuser_test'
+        databse_name = config['database']['test']['db']
+        database_user = config['database']['test']['user']
         database_pass = ''
     else:
-        database_name = "denver_streets"
-        database_user = 'gisuser'
-        database_pass = 'abc123'
+        database_name = config['database']['development']['db']
+        database_user = config['database']['development']['user']
+        database_pass = config['database']['development']['pass']
+
 except:
     database_name = 'denver_streets'
     database_user = 'gisuser'

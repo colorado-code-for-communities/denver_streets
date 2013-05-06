@@ -1,0 +1,10 @@
+database:
+  development:
+    db: 'denver_streets'
+    name: 'gisuser'
+    pass: 'abc123'
+
+  test: 
+    db: 'denver_streets_test'
+    name: 'gisuser_test'
+    pass: ''
