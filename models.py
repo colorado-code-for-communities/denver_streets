@@ -1,5 +1,7 @@
 import denver_streets
-from sqlalchemy import Column, Integer, String, Date, Time
+from sqlalchemy import *
+from geoalchemy import *
+from geoalchemy.postgis import PGComparator
 import datetime
 import os
 
@@ -16,8 +18,9 @@ class Closure(Base):
     end_date = Column(Date())
     start_time = Column(Time())
     end_time = Column(Time())
+    geom = GeometryColumn(LineString(2))
 
-    def __init__(self, location=None, closure_type=None, purpose="", start_date=datetime.datetime.now(), end_date=None, start_time=None, end_time=None):
+    def __init__(self, location=None, closure_type=None, purpose="", start_date=datetime.datetime.now(), end_date=None, start_time=None, end_time=None, geom=""):
         self.location = location
         self.closure_type = closure_type
         self.purpose = purpose
@@ -38,3 +41,4 @@ class Closure(Base):
 
         return sql_dict
 
+GeometryDDL(Closure.__table__)
