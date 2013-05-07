@@ -16,6 +16,7 @@ src/**
 *.sqlite
 *.db
 *.log
+config.yaml
 
 # Test files #
 ##############
