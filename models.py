@@ -18,7 +18,7 @@ class Closure(Base):
     end_date = Column(Date())
     start_time = Column(Time())
     end_time = Column(Time())
-    geom = GeometryColumn(LineString(2))
+    geom = GeometryColumn(LineString())
 
     def __init__(self, location=None, closure_type=None, purpose="", start_date=datetime.datetime.now(), end_date=None, start_time=None, end_time=None, geom=""):
         self.location = location

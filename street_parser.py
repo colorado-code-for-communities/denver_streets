@@ -10,7 +10,7 @@ class StreetParser():
             point2 = self.geocode_intersection(street1, street3)
             return 'LINESTRING('+point1+", "+point2+")"
         else:
-            return 'POINT('+self.geocode_point(streets)+')'
+            return 'LINESTRING('+self.geocode_point(streets)+', '+ self.geocode_point(streets) +')'
 
     def geocode_point(self, streets):
         address = streets + " Denver, CO"
