@@ -18,10 +18,9 @@ try:
         database_pass = config['database']['development']['pass']
 
 except:
-    database_name = 'denver_streets'
-    database_user = 'gisuser'
-    database_pass = 'abc123'
-    # regular db
+    database_name = config['database']['development']['db']
+    database_user = config['database']['development']['user']
+    database_pass = config['database']['development']['pass']
 
 engine = create_engine('postgresql://'+database_user+':'+database_pass+'@localhost/' + database_name)
 session = scoped_session(sessionmaker(bind=engine))
