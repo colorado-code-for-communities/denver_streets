@@ -4,20 +4,25 @@ from models import Closure
 
 class StreetParser():
     def geolocate(self, streets):
-        if len(streets) == 3:
+        if len(streets) == 3 and streets.__class__ == [].__class__:
             street1, street2, street3 = streets
-            point1 = self.geocode_point(street1, street2)
-            point2 = self.geocode_point(street1, street3)
+            point1 = self.geocode_intersection(street1, street2)
+            point2 = self.geocode_intersection(street1, street3)
             return 'LINESTRING('+point1+", "+point2+")"
         else:
-            return 'POINT('+geocode_point(streets)+')'
+            return 'POINT('+self.geocode_point(streets)+')'
 
-    def geocode_point(self, street1, street2):
+    def geocode_point(self, streets):
+        geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?address='+streets+'&sensor=false&output=json'
+        location = requests.get(geocode_url).json()['results'][0]['geometry']['location']
+        return "" + str(location['lng']) + " " + str(location['lat'])
+
+    def geocode_intersection(self, street1, street2):
         intersection = street1 + ' and ' + street2 + ", Denver, CO"
         geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?address='+intersection+'&sensor=false&output=json'
         location = requests.get(geocode_url).json()['results'][0]['geometry']['location']
 
-        return "" + str(location['lat']) + " " + str(location['lng'])
+        return "" + str(location['lng']) + " " + str(location['lat'])
 
     def find_locations(self):
         closures = database.session().query(Closure).all()
@@ -36,4 +41,6 @@ class StreetParser():
             return [street1.strip(), street2.strip(), street3.strip()]
         return location_string
 
+    def geolocater(self, location_string):
+        return self.geolocate(self.find_location(location_string))
 
