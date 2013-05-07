@@ -2,11 +2,11 @@ database:
   postgis_extensions_dir: '/usr/local/share/postgis'
   development:
     db: 'denver_streets'
-    name: 'gisuser'
+    user: 'gisuser'
     pass: 'abc123'
 
   test: 
     db: 'denver_streets_test'
-    name: 'gisuser_test'
+    user: 'gisuser_test'
     pass: ''
 
