@@ -13,7 +13,8 @@ class StreetParser():
             return 'POINT('+self.geocode_point(streets)+')'
 
     def geocode_point(self, streets):
-        geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?address='+streets+'&sensor=false&output=json'
+        address = streets + " Denver, CO"
+        geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&sensor=false&output=json'
         location = requests.get(geocode_url).json()['results'][0]['geometry']['location']
         return "" + str(location['lng']) + " " + str(location['lat'])
 

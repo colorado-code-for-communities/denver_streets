@@ -28,6 +28,7 @@ class Closure(Base):
         self.end_date = end_date
         self.start_time = start_time
         self.end_time = end_time
+        self.geom = geom
 
     def __repr__(self):
         return '<Location %r>' % self.location
