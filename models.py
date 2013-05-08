@@ -37,7 +37,7 @@ class Closure(Base):
         sql_dict = {}
         for column_name in self.__table__.c.keys():
             if column_name == 'geom':
-                next
+                continue
             sql_dict[column_name] = getattr(self, column_name)
             if type(sql_dict[column_name]) == datetime.date or type(sql_dict[column_name]) == datetime.time:
                 sql_dict[column_name] = str(sql_dict[column_name])
