@@ -39,7 +39,7 @@ def drop_db():
     session.close()
     metadata.drop_all(bind=engine)
 
-def setup_db():
+def create_db():
     postgres_engine = create_engine('postgresql://postgres@localhost/postgres')
     conn = postgres_engine.connect()
     conn.execute('commit')
