@@ -1,6 +1,7 @@
 import os, re, database
 import requests
 from models import Closure
+import time
 
 class StreetParser():
     def geolocate(self, streets):
@@ -15,14 +16,22 @@ class StreetParser():
     def geocode_point(self, streets):
         address = streets + " Denver, CO"
         geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&sensor=false&output=json'
-        location = requests.get(geocode_url).json()['results'][0]['geometry']['location']
+        location_result = requests.get(geocode_url).json()
+        if location_result['status'] == 'OVER_QUERY_LIMIT':
+            time.sleep(2)
+            location_result = requests.get(geocode_url).json()
+        location = location_result['results'][0]['geometry']['location']
         return "" + str(location['lng']) + " " + str(location['lat'])
 
     def geocode_intersection(self, street1, street2):
         intersection = street1 + ' and ' + street2 + ", Denver, CO"
         geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?address='+intersection+'&sensor=false&output=json'
-        location = requests.get(geocode_url).json()['results'][0]['geometry']['location']
+        location_result = requests.get(geocode_url).json()
+        if location_result['status'] == 'OVER_QUERY_LIMIT':
+            time.sleep(2)
+            location_result = requests.get(geocode_url).json()
 
+        location = location_result['results'][0]['geometry']['location']
         return "" + str(location['lng']) + " " + str(location['lat'])
 
     def find_locations(self):
