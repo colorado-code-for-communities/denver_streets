@@ -63,5 +63,14 @@ This will create the tables. Do the same thing with FLASK_ENV=test.
 To drop tables (not the database!), type ```database.drop_db()``` in said REPL session.
 To drop the database, type ```database.destroy_db()```
 
+If you want to make sure that PostGIS is correctly installed, run the following:
+sudo -u postgres psql -d denver_streets[_test] -c "SELECT postgis_full_version()"
+You should get something like:
+
+                                     postgis_full_version
+------------------------------------------------------------------------------------------------------
+POSTGIS="1.5.2" GEOS="3.2.2-CAPI-1.6.2" PROJ="Rel. 4.7.1, 23 September 2009" LIBXML="2.7.7" USE_STATS
+(1 row)
+
 
 Tests are currently a giant mess. Sorry! To run tests, run `./run_tests`. 
