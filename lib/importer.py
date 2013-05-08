@@ -1,11 +1,15 @@
 import import_parent
 import denver_streets
+from street_parser import StreetParser
+from geoalchemy import *
 import requests
 import datetime
 import json
+from sqlalchemy.sql.expression import func
 
 Closure = denver_streets.models.Closure
 session = denver_streets.database.session
+street_parser = StreetParser()
 
 def read_closures():
     d = datetime.datetime.today().strftime('%Y-%m-%d')
@@ -26,7 +30,8 @@ def import_closure(closure):
             closure_type=closure['type'].rstrip(),
             purpose=closure['purpose'].rstrip(),
             start_time=start_time(closure['time']),
-            end_time=end_time(closure['time'])
+            end_time=end_time(closure['time']),
+            geom=func.ST_GeomFromText(street_parser.geolocater(closure['location']), 4326)
             )
     print "adding " + closure['location']
     session.add(cl)

@@ -1,4 +1,4 @@
-denver_streets
+Denver Street Construction API
 ==============
 
 API for Denver Streets/Sidewalks closures
@@ -26,6 +26,7 @@ You need:
 * Postgresql 9.1
 * Postgis for Postgresql 9.1 (http://linfiniti.com/2012/05/installing-postgis-2-0-on-ubuntu/). 
   * For OSX users, you can install via brew
+  * For Linux users, you can install via your package management of choice
  
 
 =======
@@ -39,32 +40,37 @@ Database setup
 <!-- sudo su postgres -->
 
 ```sh
-createdb -E UNICODE denver_streets
-createlang plpgsql denver_streets
-
-psql -d denver_streets -f (your postgis install directory)/postgis.sql
-psql -d denver_streets -f (your postgis install directory)/spatial_ref_sys.sql
-
 # Create a new user if gisuser does not exist already
 createuser -P gisuser
-
-# Grant permissions to user gisuser
-psql denver_streets
-grant all on database denver_streets to "gisuser";
-grant all on spatial_ref_sys to "gisuser";
-grant all on geometry_columns to "gisuser";
-\q
+# Create a new user if gisuser_test does not exist already
+createuser -P gisuser_test
 ```
+
+Copy config.yaml.example to config.yaml. Open it up.
+Edit the database settings with the correct username and password you set.
+
+Fill in postgis_extensions_dir with the postgis install directory that contains your postgis.sql and spatial_ref_sys.sql files.
 
 Open up your python REPL in the app root directory and type the following:
 ```python
 import database
+database.setup_db()
 database.init_db()
 ```
 
-This will create the tables.
+This will create the tables. Do the same thing with FLASK_ENV=test. 
 
 To drop tables (not the database!), type ```database.drop_db()``` in said REPL session.
+To drop the database, type ```database.destroy_db()```
+
+If you want to make sure that PostGIS is correctly installed, run the following:
+sudo -u postgres psql -d denver_streets[_test] -c "SELECT postgis_full_version()"
+You should get something like:
+
+                                     postgis_full_version
+------------------------------------------------------------------------------------------------------
+POSTGIS="1.5.2" GEOS="3.2.2-CAPI-1.6.2" PROJ="Rel. 4.7.1, 23 September 2009" LIBXML="2.7.7" USE_STATS
+(1 row)
 
 
 Tests are currently a giant mess. Sorry! To run tests, run `./run_tests`. 

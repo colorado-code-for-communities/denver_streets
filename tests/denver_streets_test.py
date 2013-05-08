@@ -10,7 +10,6 @@ class Today(datetime.date):
 
 class DenverStreetsTestCase(unittest.TestCase):
     def setUp(self):
-        # app.app.config['FLASK_ENV'] = 'test'
         self.closure_json = open(fixtures_dir + '/importer_test_fixtures.txt').read()
         self.app = denver_streets.app.test_client()
         database.init_db()
