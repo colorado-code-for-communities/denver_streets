@@ -10,7 +10,6 @@ Base = denver_streets.database.Base
 class Closure(Base):
     __tablename__ = 'closures'
     id = Column(Integer, primary_key=True)
-    name = Column(String(255), unique=True)
     location = Column(String(256), unique=True)
     closure_type = Column(String(255))
     purpose = Column(String(255))
