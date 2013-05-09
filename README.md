@@ -40,10 +40,8 @@ Database setup
 <!-- sudo su postgres -->
 
 ```sh
-# Create a new user if gisuser does not exist already
-createuser -P gisuser
-# Create a new user if gisuser_test does not exist already
-createuser -P gisuser_test
+# Create a new superuser if gisuser does not exist already
+createuser -P -s gisuser
 ```
 
 Copy config.yaml.example to config.yaml. Open it up.
@@ -54,9 +52,26 @@ Fill in postgis_extensions_dir with the postgis install directory that contains 
 Open up your python REPL in the app root directory and type the following:
 ```python
 import database
-database.setup_db()
-database.init_db()
+database.create_db()
 ```
+
+Now in your shell, type the following:
+```sh
+createlang plpgsql denver_streets
+createlang plpgsql denver_streets_test
+
+psql -d denver_streets -f {your postgis extensions directory}/postgis.sql
+psql -d denver_streets_test -f {your postgis extensions directory}/postgis.sql
+```
+
+(postgis.sql should have spatial_ref_sys.sql and lwpostgis.sql mentioned int he tutorial above.)
+
+
+Go back to your python REPL and init the database:
+```
+import database
+database.init_db()
+````
 
 This will create the tables. Do the same thing with FLASK_ENV=test. 
 

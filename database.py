@@ -39,26 +39,16 @@ def drop_db():
     session.close()
     metadata.drop_all(bind=engine)
 
-def setup_db():
-    postgres_engine = create_engine('postgresql://postgres@localhost/postgres')
+def create_db():
+    postgres_engine = create_engine('postgresql://'+database_user+':'+database_pass+'@localhost/postgres')
     conn = postgres_engine.connect()
     conn.execute('commit')
-    conn.execute('create database ' + database_name)
-    conn.close()
-    os.system('psql -d ' + database_name + ' -f ' + config['database']['postgis_extensions_dir'] + '/postgis.sql')
-    os.system('psql -d ' + database_name + ' -f ' + config['database']['postgis_extensions_dir'] + '/spatial_ref_sys.sql')
-
-    admin_engine = create_engine('postgresql://postgres@localhost/' + database_name)
-    conn = admin_engine.connect()
-    conn.execute('grant all on database ' + database_name + ' to "' + database_user + '"')
-    conn.execute('grant all on spatial_ref_sys to "' + database_user + '"')
-    conn.execute('grant all on geometry_columns to "' + database_user + '"')
-    conn.execute('commit')
+    conn.execute('create database ' + database_name + ' WITH ENCODING=\'UNICODE\'')
     conn.close()
 
 def destroy_db():
-    engine = create_engine('postgresql://postgres@localhost/postgres')
-    conn = engine.connect()
+    postgres_engine = create_engine('postgresql://'+database_user+':'+database_pass+'@localhost/postgres')
+    conn = postgres_engine.connect()
     conn.execute('commit')
     conn.execute('drop database ' + database_name)
     conn.close()
