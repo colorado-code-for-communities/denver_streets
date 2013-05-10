@@ -1,5 +1,5 @@
 from test_helpers import *
-from street_parser import StreetParser
+from lib.street_parser import StreetParser
 
 class LocationParserTests(unittest.TestCase):
     def setUp(self):
