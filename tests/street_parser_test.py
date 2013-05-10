@@ -21,7 +21,7 @@ class LocationParserTests(unittest.TestCase):
 
     def testParseLocationStringPoint(self):
         assert StreetParser().find_location(self.location_strings[1]) == 'Evans_(Galapago to Bannock)'
-        assert 'LINESTRING(' in StreetParser().geolocater(self.location_strings[1])
+        assert 'POINT(' in StreetParser().geolocater(self.location_strings[1])
 
 if __name__ == '__main__':
     unittest.main()

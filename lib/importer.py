@@ -1,7 +1,7 @@
 import import_parent
 import denver_streets
 from street_parser import StreetParser
-from geoalchemy import *
+from geoalchemy2 import *
 import requests
 import datetime
 import json
@@ -31,7 +31,7 @@ def import_closure(closure):
             purpose=closure['purpose'].rstrip(),
             start_time=start_time(closure['time']),
             end_time=end_time(closure['time']),
-            geom=func.ST_GeomFromText(street_parser.geolocater(closure['location']), 4326)
+            geom=street_parser.geolocater(closure['location'])
             )
     print "adding " + closure['location']
     session.add(cl)

@@ -44,5 +44,10 @@ class DenverStreetsTestCase(unittest.TestCase):
         closures = json.loads(result.data)['items']
         assert len(closures) == 6
 
+    def test_location(self):
+        datetime.datetime = Today
+        result = self.app.get('/closures')
+        closures = json.loads
+
 if __name__ == '__main__':
     unittest.main()
