@@ -1,7 +1,6 @@
 import denver_streets
 from sqlalchemy import *
-from geoalchemy import *
-from geoalchemy.postgis import PGComparator
+from geoalchemy2 import *
 import datetime
 import os
 
@@ -10,7 +9,6 @@ Base = denver_streets.database.Base
 class Closure(Base):
     __tablename__ = 'closures'
     id = Column(Integer, primary_key=True)
-    name = Column(String(255), unique=True)
     location = Column(String(256), unique=True)
     closure_type = Column(String(255))
     purpose = Column(String(255))
@@ -18,7 +16,7 @@ class Closure(Base):
     end_date = Column(Date())
     start_time = Column(Time())
     end_time = Column(Time())
-    geom = GeometryColumn(LineString())
+    geom = Column(Geometry(srid=4326))
 
     def __init__(self, location=None, closure_type=None, purpose="", start_date=datetime.datetime.now(), end_date=None, start_time=None, end_time=None, geom=""):
         self.location = location
@@ -28,7 +26,7 @@ class Closure(Base):
         self.end_date = end_date
         self.start_time = start_time
         self.end_time = end_time
-        self.geom = geom
+        self.geom = WKTElement(geom, srid=4326)
 
     def __repr__(self):
         return '<Location %r>' % self.location
@@ -44,4 +42,3 @@ class Closure(Base):
 
         return sql_dict
 
-GeometryDDL(Closure.__table__)

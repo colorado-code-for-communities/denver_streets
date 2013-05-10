@@ -44,5 +44,11 @@ class DenverStreetsTestCase(unittest.TestCase):
         closures = json.loads(result.data)['items']
         assert len(closures) == 6
 
+    def test_location(self):
+        datetime.datetime = Today
+        result = self.app.get('/closures')
+        closures = json.loads(result.data)['items']
+        assert closures[0]['geometry'] == { "type": "Point", "coordinates": [-104.9847179,39.737567]}
+
 if __name__ == '__main__':
     unittest.main()
