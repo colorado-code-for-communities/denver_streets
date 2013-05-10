@@ -1,5 +1,5 @@
 Flask==0.9
-GeoAlchemy==0.7.1
+GeoAlchemy2==0.2
 Jinja2==2.6
 PyYAML==3.10
 SQLAlchemy==0.8.0
@@ -9,5 +9,6 @@ distribute==0.6.31
 nltk==2.0.4
 numpy==1.7.1
 psycopg2==2.4.6
+python-Levenshtein==0.10.2
 requests==1.2.0
 wsgiref==0.1.2
