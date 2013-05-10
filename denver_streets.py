@@ -31,8 +31,12 @@ def closures():
 
     closures = database.session.query(Closure).filter(Closure.start_date <= date_param, Closure.end_date >= date_param).all()
     closures_array = []
+
     for closure in closures:
-        closures_array.append(closure.to_dict())
+        closure_dict = closure.to_dict()
+        closure_dict['geometry'] = json.loads(database.session.scalar(closure.geom.ST_AsGeoJSON()))
+        closures_array.append(closure_dict)
+
     response = Response(json.dumps({'items': closures_array}), status=200, mimetype='application/json', headers={'Access-Control-Allow-Origin':'*'})
     return response
 

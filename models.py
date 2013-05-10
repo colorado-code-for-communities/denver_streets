@@ -41,3 +41,4 @@ class Closure(Base):
                 sql_dict[column_name] = str(sql_dict[column_name])
 
         return sql_dict
+
