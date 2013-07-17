@@ -12,9 +12,9 @@ GET: `/closures`
 
 Returns a list of current closures.
 
-GET: `/closures?current_location=??&radius=1`
+GET: `/closures?on_date='{YYYY-MM-DD}'`
 
-Returns all closures within a radius in miles (default radius will be equal to 1).
+Returns a list of closures on date (in Year-Month-Day format eg: 2013-07-10)
 
 Development
 ==============
