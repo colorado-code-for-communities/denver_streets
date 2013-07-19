@@ -41,7 +41,7 @@ Database setup
 
 ```sh
 # Create a new superuser if gisuser does not exist already
-createuser -P -s gisuser
+createuser -P -s denverstreetsuser
 ```
 
 Copy config.yaml.example to config.yaml. Open it up.

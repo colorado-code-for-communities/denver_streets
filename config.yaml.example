@@ -3,7 +3,7 @@ database:
   development:
     db: 'denver_streets'
     user: 'denverstreetsuser'
-    pass: 'abc123'
+    pass: ''
 
   test: 
     db: 'denver_streets_test'
