@@ -8,11 +8,11 @@ Using
 
 GET: `/`
 
-GET: `/closures`
+GET: `/closings`
 
 Returns a list of current closings.
 
-GET: `/closures?on_date=YYYY-MM-DD`
+GET: `/closings?on_date=YYYY-MM-DD`
 
 Returns a list of street closings on specific date
 
