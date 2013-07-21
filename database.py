@@ -2,10 +2,11 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 from sqlalchemy.ext.declarative import declarative_base
 from geoalchemy2 import *
-import os
+import os, subprocess
 import yaml
 
 config = yaml.load(open('config.yaml', 'r'))
+postgis_extensions_dir = config['database']['postgis_extensions_dir']
 
 try:
     if os.environ['FLASK_ENV'] == 'test':
@@ -44,7 +45,10 @@ def create_db():
     conn = postgres_engine.connect()
     conn.execute('commit')
     conn.execute('create database ' + database_name + ' WITH ENCODING=\'UNICODE\'')
+    #conn.execute('create language plpgsql')
     conn.close()
+    subprocess.call(['psql', '-d', database_name, '-f', postgis_extensions_dir + '/postgis.sql'])
+
 
 def destroy_db():
     postgres_engine = create_engine('postgresql://'+database_user+':'+database_pass+'@localhost/postgres')

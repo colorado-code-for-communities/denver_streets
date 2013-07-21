@@ -1,7 +1,7 @@
 Denver Street Construction API
 ==============
 
-API for Denver Streets/Sidewalks closures
+API for Denver Streets/Sidewalks closings
 
 Using
 ==============
@@ -10,11 +10,11 @@ GET: `/`
 
 GET: `/closures`
 
-Returns a list of current closures.
+Returns a list of current closings.
 
-GET: `/closures?on_date='{YYYY-MM-DD}'`
+GET: `/closures?on_date=YYYY-MM-DD`
 
-Returns a list of closures on date (in Year-Month-Day format eg: 2013-07-10)
+Returns a list of street closings on specific date
 
 Development
 ==============
@@ -41,42 +41,22 @@ Database setup
 
 ```sh
 # Create a new superuser if gisuser does not exist already
-createuser -P -s gisuser
+createuser -P -s denverstreetsuser
 ```
 
 Copy config.yaml.example to config.yaml. Open it up.
 Edit the database settings with the correct username and password you set.
 
-Fill in postgis_extensions_dir with the postgis install directory that contains your postgis.sql and spatial_ref_sys.sql files.
+Fill in postgis_extensions_dir with the postgis install directory that contains your postgis.sql files.
 
-Open up your python REPL in the app root directory and type the following:
-```python
-import database
-database.create_db()
+From the app root directory and run the following:
+```
+./bin/setup_db
 ```
 
-Now in your shell, type the following:
-```sh
-createlang plpgsql denver_streets
-createlang plpgsql denver_streets_test
+This will create the databases (development and test) with the proper python extensions. 
 
-psql -d denver_streets -f {your postgis extensions directory}/postgis.sql
-psql -d denver_streets_test -f {your postgis extensions directory}/postgis.sql
-```
-
-(postgis.sql should have spatial_ref_sys.sql and lwpostgis.sql mentioned int he tutorial above.)
-
-
-Go back to your python REPL and init the database:
-```
-import database
-database.init_db()
-````
-
-This will create the tables. Do the same thing with FLASK_ENV=test. 
-
-To drop tables (not the database!), type ```database.drop_db()``` in said REPL session.
-To drop the database, type ```database.destroy_db()```
+To drop tables (not the database!), run ```./bin/drop_db```
 
 If you want to make sure that PostGIS is correctly installed, run the following:
 sudo -u postgres psql -d denver_streets[_test] -c "SELECT postgis_full_version()"
