@@ -1,6 +1,6 @@
 import os, re, database
 import requests
-from models import Closure
+from models import Closing
 import time
 
 class StreetParser():
@@ -35,9 +35,9 @@ class StreetParser():
         return "" + str(location['lng']) + " " + str(location['lat'])
 
     def find_locations(self):
-        closures = database.session().query(Closure).all()
+        closings = database.session().query(Closing).all()
 
-        for closure in closures:
+        for closure in closings:
             locations = self.find_location(closure.location)
             self.geolocate(locations)
 

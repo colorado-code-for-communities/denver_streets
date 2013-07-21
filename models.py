@@ -6,11 +6,11 @@ import os
 
 Base = denver_streets.database.Base
 
-class Closure(Base):
-    __tablename__ = 'closures'
+class Closing(Base):
+    __tablename__ = 'closings'
     id = Column(Integer, primary_key=True)
     location = Column(String(256), unique=True)
-    closure_type = Column(String(255))
+    closing_type = Column(String(255))
     purpose = Column(String(255))
     start_date = Column(Date())
     end_date = Column(Date())
@@ -18,9 +18,9 @@ class Closure(Base):
     end_time = Column(Time())
     geom = Column(Geometry(srid=4326))
 
-    def __init__(self, location=None, closure_type=None, purpose="", start_date=datetime.datetime.now(), end_date=None, start_time=None, end_time=None, geom=""):
+    def __init__(self, location=None, closing_type=None, purpose="", start_date=datetime.datetime.now(), end_date=None, start_time=None, end_time=None, geom=""):
         self.location = location
-        self.closure_type = closure_type
+        self.closing_type = closing_type
         self.purpose = purpose
         self.start_date = start_date
         self.end_date = end_date

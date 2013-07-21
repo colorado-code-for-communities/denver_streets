@@ -15,35 +15,30 @@ env = Environment(loader=PackageLoader('denver_streets', 'templates'))
 
 @app.route('/')
 def index():
-    items = ['closures']
+    items = ['closings']
     response = { 'items' : [] }
     [ response['items'].append({item+"_href": url_for(item)}) for item in items]
     response_data = json.dumps(response)
     response = Response(response_data, status=200, mimetype='application/json', headers={'Access-Control-Allow-Origin':'*'})
     return response
 
-@app.route('/closures')
-def closures():
+@app.route('/closings')
+def closings():
     if request.args.get('on_date'):
         date_param = datetime.datetime.strptime(request.args.get('on_date'), "%Y-%m-%d")
     else:
         date_param = datetime.datetime.now()
 
-    closures = database.session.query(Closure).filter(Closure.start_date <= date_param, Closure.end_date >= date_param).all()
-    closures_array = []
+    closings = database.session.query(Closing).filter(Closing.start_date <= date_param, Closing.end_date >= date_param).all()
+    closings_array = []
 
-    for closure in closures:
-        closure_dict = closure.to_dict()
-        closure_dict['geometry'] = json.loads(database.session.scalar(closure.geom.ST_AsGeoJSON()))
-        closures_array.append(closure_dict)
+    for closing in closings:
+        closing_dict = closing.to_dict()
+        closing_dict['geometry'] = json.loads(database.session.scalar(closing.geom.ST_AsGeoJSON()))
+        closings_array.append(closing_dict)
 
-    response = Response(json.dumps({'items': closures_array}), status=200, mimetype='application/json', headers={'Access-Control-Allow-Origin':'*'})
+    response = Response(json.dumps({'items': closings_array}), status=200, mimetype='application/json', headers={'Access-Control-Allow-Origin':'*'})
     return response
-
-@app.route('/closures/<int:closure_id>')
-def closure_id():
-    return ""
-# find closure with closure_id
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
