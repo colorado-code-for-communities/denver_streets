@@ -1,0 +1,6 @@
+python -c "import database; database.create_db()"
+FLASK_ENV=test python -c "import database; database.create_db()"
+
+# create db by calling database.create_db()
+# create lang plpgsql
+# psql -d denver_streets -f {postgisextensions_dir}/psql

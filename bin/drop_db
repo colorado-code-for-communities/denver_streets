@@ -1,0 +1,2 @@
+python -c "import database; database.destroy_db()"
+FLASK_ENV=test python -c "import database; database.destroy_db()"

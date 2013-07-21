@@ -47,7 +47,7 @@ def create_db():
     conn.execute('create database ' + database_name + ' WITH ENCODING=\'UNICODE\'')
     #conn.execute('create language plpgsql')
     conn.close()
-    subprocess.call('psql -d '+ postgis_extensions_dir + '/postgis.sql')
+    subprocess.call(['psql', '-d', database_name, '-f', postgis_extensions_dir + '/postgis.sql'])
 
 
 def destroy_db():
