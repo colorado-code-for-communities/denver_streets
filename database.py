@@ -40,15 +40,6 @@ def drop_db():
     session.close()
     metadata.drop_all(bind=engine)
 
-def create_db():
-    postgres_engine = create_engine('postgresql://'+database_user+':'+database_pass+'@localhost/postgres')
-    conn = postgres_engine.connect()
-    conn.execute('commit')
-    conn.execute('create database ' + database_name + ' WITH ENCODING=\'UNICODE\'')
-    #conn.execute('create language plpgsql')
-    conn.close()
-    subprocess.call(['psql', '-d', database_name, '-f', postgis_extensions_dir + '/postgis.sql'])
-
 
 def destroy_db():
     postgres_engine = create_engine('postgresql://'+database_user+':'+database_pass+'@localhost/postgres')
