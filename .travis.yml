@@ -3,5 +3,6 @@ env: FLASK_ENV=test
 install: 
   - pip install -r requirements.txt --use-mirrors
   - cp config.yaml.example config.yaml
+  - createuser denverstreetsuser
 script: ./run_tests
 
