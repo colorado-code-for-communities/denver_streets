@@ -9,4 +9,5 @@ distribute==0.6.31
 numpy==1.7.1
 psycopg2==2.4.6
 requests==1.2.0
+vcrpy==0.3.0
 wsgiref==0.1.2

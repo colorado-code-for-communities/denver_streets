@@ -1,5 +1,6 @@
 from test_helpers import *
 from lib.street_parser import StreetParser
+import vcr
 
 class LocationParserTests(unittest.TestCase):
     def setUp(self):
@@ -16,12 +17,14 @@ class LocationParserTests(unittest.TestCase):
                 ]
 
     def testParseLocationStringLine(self):
-        assert StreetParser().find_location(self.location_strings[0]) == ['10th ave', 'sheridan', 'yates']
-        assert StreetParser().geolocater(self.location_strings[0]) == 'LINESTRING(-105.0532578 39.7331141, -105.0510184 39.7330965)'
+        with vcr.use_cassette('tests/fixtures/vcr_cassettes/sheridan_yates_10th.yaml'):
+            assert StreetParser().find_location(self.location_strings[0]) == ['10th ave', 'sheridan', 'yates']
+            assert StreetParser().geolocater(self.location_strings[0]) == 'LINESTRING(-105.0532363 39.7331157, -105.0510184 39.7330965)'
 
     def testParseLocationStringPoint(self):
-        assert StreetParser().find_location(self.location_strings[1]) == 'Evans_(Galapago to Bannock)'
-        assert 'POINT(' in StreetParser().geolocater(self.location_strings[1])
+        with vcr.use_cassette('tests/fixtures/vcr_cassettes/evans_galapago_bannock.yaml'):
+            assert StreetParser().find_location(self.location_strings[1]) == 'Evans_(Galapago to Bannock)'
+            assert 'POINT(' in StreetParser().geolocater(self.location_strings[1])
 
 if __name__ == '__main__':
     unittest.main()
