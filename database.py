@@ -40,7 +40,6 @@ def drop_db():
     session.close()
     metadata.drop_all(bind=engine)
 
-
 def destroy_db():
     postgres_engine = create_engine('postgresql://'+database_user+':'+database_pass+'@localhost/postgres')
     conn = postgres_engine.connect()
