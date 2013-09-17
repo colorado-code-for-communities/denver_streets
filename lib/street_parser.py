@@ -28,12 +28,14 @@ class StreetParser():
         return "" + str(location['lng']) + " " + str(location['lat'])
 
     def geocode_intersection(self, street1, street2):
-        intersection = street1 + ' and ' + street2 + ", Denver, CO"
+        intersection = urllib.quote(street1 + ' and ' + street2 + ", Denver, CO")
         geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?address='+intersection+'&sensor=false&output=json'
         location_result = requests.get(geocode_url).json()
         if location_result['status'] == 'OVER_QUERY_LIMIT':
             time.sleep(2)
             location_result = requests.get(geocode_url).json()
+        elif location_result['status'] == 'ZERO_RESULTS':
+            return '0 0' 
 
         location = location_result['results'][0]['geometry']['location']
         return "" + str(location['lng']) + " " + str(location['lat'])
