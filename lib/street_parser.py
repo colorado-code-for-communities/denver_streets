@@ -2,6 +2,7 @@ import os, re, database
 import requests
 from models import Closing
 import time
+import urllib
 
 class StreetParser():
     def geolocate(self, streets):
@@ -14,7 +15,7 @@ class StreetParser():
             return 'POINT('+self.geocode_point(streets)+')'
 
     def geocode_point(self, streets):
-        address = streets + " Denver, CO"
+        address = urllib.quote(streets + " Denver, CO")
         geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&sensor=false&output=json'
         location_result = requests.get(geocode_url).json()
         if location_result['status'] == 'OVER_QUERY_LIMIT':
