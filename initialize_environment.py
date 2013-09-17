@@ -21,7 +21,6 @@ import database
 CONFIG_DATABASE_INFO_KEY = 'database'
 ENGINE_TEMPLATE = 'postgresql://%s:%s@localhost/postgres'
 CREATE_CMD_TEMPLATE = 'CREATE DATABASE %s WITH ENCODING=\'UNICODE\''
-ROLE_CMD_TEMPLATE = 'CREATE ROLE %s LOGIN PASSWORD \'%s\';'
 NUM_REG_ARGS = 2
 USAGE_MESSAGE = 'usage: python initialize_environment.py database_type\n'
 INVALID_TYPE_MESSAGE = '%s is not a valid database type. Valid types: %s.\n'
@@ -97,23 +96,6 @@ def create_db(conn, database_name):
     conn.execute('commit')
 
 
-def create_user(database_user, database_password):
-    """Create a new user on the local Postgres server.
-
-    @param database_user: The name of the user to create.
-    @type database_user: str
-    @param database_password: The password to give that new user.
-    @type database_password: str
-    """
-    create_cmd = ROLE_CMD_TEMPLATE % (database_user, database_password)
-    cmd_elements = [
-        'psql',
-        '-c',
-        create_cmd
-    ]
-    subprocess.call(cmd_elements)
-
-
 def is_valid_database_type(database_type, env_config):
     """Determine if the given database type can be initialized with this script.
 
@@ -161,12 +143,10 @@ def main(database_type):
         return
 
     db_init_config = env_config[CONFIG_DATABASE_INFO_KEY][database_type]
-    
+
     user = db_init_config['user']
     password = db_init_config['pass']
     database_name = db_init_config['db']
-
-    create_user(user, password)
 
     engine = create_db_engine(user, password)
     connection = engine.connect()
