@@ -1,0 +1,95 @@
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, python-requests/1.2.0 CPython/2.7.4 Darwin/12.4.0]
+      - !!python/tuple [Accept, '*/*']
+    host: maps.googleapis.com
+    method: GET
+    path: /maps/api/geocode/json?address=10th%20ave%20and%20sheridan,%20Denver,%20CO&sensor=false&output=json
+    port: 80
+    protocol: http
+  response:
+    body: {string: "{\n   \"results\" : [\n      {\n         \"address_components\"\
+        \ : [\n            {\n               \"long_name\" : \"Sheridan Boulevard\"\
+        ,\n               \"short_name\" : \"Sheridan Blvd\",\n               \"types\"\
+        \ : [ \"route\" ]\n            },\n            {\n               \"long_name\"\
+        \ : \"Molholm Two Creeks\",\n               \"short_name\" : \"Molholm Two\
+        \ Creeks\",\n               \"types\" : [ \"neighborhood\", \"political\"\
+        \ ]\n            },\n            {\n               \"long_name\" : \"Denver\"\
+        ,\n               \"short_name\" : \"Denver\",\n               \"types\" :\
+        \ [ \"locality\", \"political\" ]\n            },\n            {\n       \
+        \        \"long_name\" : \"Jefferson\",\n               \"short_name\" : \"\
+        Jefferson\",\n               \"types\" : [ \"administrative_area_level_2\"\
+        , \"political\" ]\n            },\n            {\n               \"long_name\"\
+        \ : \"Colorado\",\n               \"short_name\" : \"CO\",\n             \
+        \  \"types\" : [ \"administrative_area_level_1\", \"political\" ]\n      \
+        \      },\n            {\n               \"long_name\" : \"United States\"\
+        ,\n               \"short_name\" : \"US\",\n               \"types\" : [ \"\
+        country\", \"political\" ]\n            },\n            {\n              \
+        \ \"long_name\" : \"80204\",\n               \"short_name\" : \"80204\",\n\
+        \               \"types\" : [ \"postal_code\" ]\n            }\n         ],\n\
+        \         \"formatted_address\" : \"Sheridan Boulevard & West 10th Avenue,\
+        \ Denver, CO 80204, USA\",\n         \"geometry\" : {\n            \"location\"\
+        \ : {\n               \"lat\" : 39.7331157,\n               \"lng\" : -105.0532363\n\
+        \            },\n            \"location_type\" : \"APPROXIMATE\",\n      \
+        \      \"viewport\" : {\n               \"northeast\" : {\n              \
+        \    \"lat\" : 39.7344646802915,\n                  \"lng\" : -105.0518873197085\n\
+        \               },\n               \"southwest\" : {\n                  \"\
+        lat\" : 39.7317667197085,\n                  \"lng\" : -105.0545852802915\n\
+        \               }\n            }\n         },\n         \"partial_match\"\
+        \ : true,\n         \"types\" : [ \"intersection\" ]\n      }\n   ],\n   \"\
+        status\" : \"OK\"\n}\n"}
+    headers: {access-control-allow-origin: '*', alternate-protocol: '80:quic', cache-control: 'public,
+        max-age=86400', content-type: application/json; charset=UTF-8, date: 'Tue,
+        17 Sep 2013 17:08:33 GMT', expires: 'Wed, 18 Sep 2013 17:08:33 GMT', server: mafe,
+      transfer-encoding: chunked, vary: Accept-Language, x-frame-options: SAMEORIGIN,
+      x-xss-protection: 1; mode=block}
+    status: {code: 200, message: OK}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, python-requests/1.2.0 CPython/2.7.4 Darwin/12.4.0]
+      - !!python/tuple [Accept, '*/*']
+    host: maps.googleapis.com
+    method: GET
+    path: /maps/api/geocode/json?address=10th%20ave%20and%20yates,%20Denver,%20CO&sensor=false&output=json
+    port: 80
+    protocol: http
+  response:
+    body: {string: "{\n   \"results\" : [\n      {\n         \"address_components\"\
+        \ : [\n            {\n               \"long_name\" : \"West 10th Avenue\"\
+        ,\n               \"short_name\" : \"W 10th Ave\",\n               \"types\"\
+        \ : [ \"route\" ]\n            },\n            {\n               \"long_name\"\
+        \ : \"Villa Park\",\n               \"short_name\" : \"Villa Park\",\n   \
+        \            \"types\" : [ \"neighborhood\", \"political\" ]\n           \
+        \ },\n            {\n               \"long_name\" : \"Denver\",\n        \
+        \       \"short_name\" : \"Denver\",\n               \"types\" : [ \"locality\"\
+        , \"political\" ]\n            },\n            {\n               \"long_name\"\
+        \ : \"Denver\",\n               \"short_name\" : \"Denver\",\n           \
+        \    \"types\" : [ \"administrative_area_level_2\", \"political\" ]\n    \
+        \        },\n            {\n               \"long_name\" : \"Colorado\",\n\
+        \               \"short_name\" : \"CO\",\n               \"types\" : [ \"\
+        administrative_area_level_1\", \"political\" ]\n            },\n         \
+        \   {\n               \"long_name\" : \"United States\",\n               \"\
+        short_name\" : \"US\",\n               \"types\" : [ \"country\", \"political\"\
+        \ ]\n            },\n            {\n               \"long_name\" : \"80204\"\
+        ,\n               \"short_name\" : \"80204\",\n               \"types\" :\
+        \ [ \"postal_code\" ]\n            }\n         ],\n         \"formatted_address\"\
+        \ : \"West 10th Avenue & Yates Street, Denver, CO 80204, USA\",\n        \
+        \ \"geometry\" : {\n            \"location\" : {\n               \"lat\" :\
+        \ 39.73309649999999,\n               \"lng\" : -105.0510184\n            },\n\
+        \            \"location_type\" : \"APPROXIMATE\",\n            \"viewport\"\
+        \ : {\n               \"northeast\" : {\n                  \"lat\" : 39.73444548029149,\n\
+        \                  \"lng\" : -105.0496694197085\n               },\n     \
+        \          \"southwest\" : {\n                  \"lat\" : 39.7317475197085,\n\
+        \                  \"lng\" : -105.0523673802915\n               }\n      \
+        \      }\n         },\n         \"partial_match\" : true,\n         \"types\"\
+        \ : [ \"intersection\" ]\n      }\n   ],\n   \"status\" : \"OK\"\n}\n"}
+    headers: {access-control-allow-origin: '*', alternate-protocol: '80:quic', cache-control: 'public,
+        max-age=86400', content-type: application/json; charset=UTF-8, date: 'Tue,
+        17 Sep 2013 17:08:33 GMT', expires: 'Wed, 18 Sep 2013 17:08:33 GMT', server: mafe,
+      transfer-encoding: chunked, vary: Accept-Language, x-frame-options: SAMEORIGIN,
+      x-xss-protection: 1; mode=block}
+    status: {code: 200, message: OK}

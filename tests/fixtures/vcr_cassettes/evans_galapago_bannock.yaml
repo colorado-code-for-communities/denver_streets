@@ -1,0 +1,44 @@
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, python-requests/1.2.0 CPython/2.7.4 Darwin/12.4.0]
+      - !!python/tuple [Accept, '*/*']
+    host: maps.googleapis.com
+    method: GET
+    path: /maps/api/geocode/json?address=Evans_(Galapago%20to%20Bannock)%20Denver,%20CO&sensor=false&output=json
+    port: 80
+    protocol: http
+  response:
+    body: {string: "{\n   \"results\" : [\n      {\n         \"address_components\"\
+        \ : [\n            {\n               \"long_name\" : \"Denver\",\n       \
+        \        \"short_name\" : \"Denver\",\n               \"types\" : [ \"locality\"\
+        , \"political\" ]\n            },\n            {\n               \"long_name\"\
+        \ : \"Denver\",\n               \"short_name\" : \"Denver\",\n           \
+        \    \"types\" : [ \"administrative_area_level_2\", \"political\" ]\n    \
+        \        },\n            {\n               \"long_name\" : \"Colorado\",\n\
+        \               \"short_name\" : \"CO\",\n               \"types\" : [ \"\
+        administrative_area_level_1\", \"political\" ]\n            },\n         \
+        \   {\n               \"long_name\" : \"United States\",\n               \"\
+        short_name\" : \"US\",\n               \"types\" : [ \"country\", \"political\"\
+        \ ]\n            }\n         ],\n         \"formatted_address\" : \"Denver,\
+        \ CO, USA\",\n         \"geometry\" : {\n            \"bounds\" : {\n    \
+        \           \"northeast\" : {\n                  \"lat\" : 39.91424689999999,\n\
+        \                  \"lng\" : -104.6002959\n               },\n           \
+        \    \"southwest\" : {\n                  \"lat\" : 39.614431,\n         \
+        \         \"lng\" : -105.109927\n               }\n            },\n      \
+        \      \"location\" : {\n               \"lat\" : 39.737567,\n           \
+        \    \"lng\" : -104.9847179\n            },\n            \"location_type\"\
+        \ : \"APPROXIMATE\",\n            \"viewport\" : {\n               \"northeast\"\
+        \ : {\n                  \"lat\" : 39.91424689999999,\n                  \"\
+        lng\" : -104.6002959\n               },\n               \"southwest\" : {\n\
+        \                  \"lat\" : 39.614431,\n                  \"lng\" : -105.109927\n\
+        \               }\n            }\n         },\n         \"partial_match\"\
+        \ : true,\n         \"types\" : [ \"locality\", \"political\" ]\n      }\n\
+        \   ],\n   \"status\" : \"OK\"\n}\n"}
+    headers: {access-control-allow-origin: '*', alternate-protocol: '80:quic', cache-control: 'public,
+        max-age=86400', content-type: application/json; charset=UTF-8, date: 'Tue,
+        17 Sep 2013 17:08:34 GMT', expires: 'Wed, 18 Sep 2013 17:08:34 GMT', server: mafe,
+      transfer-encoding: chunked, vary: Accept-Language, x-frame-options: SAMEORIGIN,
+      x-xss-protection: 1; mode=block}
+    status: {code: 200, message: OK}
