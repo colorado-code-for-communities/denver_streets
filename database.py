@@ -4,12 +4,15 @@ from sqlalchemy.ext.declarative import declarative_base
 from geoalchemy2 import *
 import os, subprocess
 import yaml
+import initialize_environment
 
 config = yaml.load(open('config.yaml', 'r'))
 postgis_extensions_dir = config['database']['postgis_extensions_dir']
+database_type = ''
 
 try:
     if os.environ['FLASK_ENV'] == 'test':
+        database_type = 'test'
         database_name = config['database']['test']['db']
         database_user = config['database']['test']['user']
         database_pass = config['database']['test']['pass']
@@ -20,6 +23,7 @@ try:
         database_pass = config['database']['development']['pass']
 
 except:
+    database_type = 'development'
     database_name = config['database']['development']['db']
     database_user = config['database']['development']['user']
     database_pass = config['database']['development']['pass']
@@ -47,3 +51,5 @@ def destroy_db():
     conn.execute('drop database ' + database_name)
     conn.close()
 
+def create_db():
+    initialize_environment.main(database_type)
