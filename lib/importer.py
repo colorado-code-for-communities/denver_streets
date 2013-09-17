@@ -6,6 +6,7 @@ import requests
 import datetime
 import json
 from sqlalchemy.sql.expression import func
+from sqlalchemy.sql import exists
 
 Closing = denver_streets.models.Closing
 session = denver_streets.database.session
@@ -23,19 +24,24 @@ def import_closings(closing_json):
         import_closing(closing)
 
 def import_closing(closing):
-    cl = Closing(
-            end_date=closing['end_date'],
-            start_date=closing['start_date'],
-            location=closing['location'].rstrip(),
-            closing_type=closing['type'].rstrip(),
-            purpose=closing['purpose'].rstrip(),
-            start_time=start_time(closing['time']),
-            end_time=end_time(closing['time']),
-            geom=street_parser.geolocater(closing['location'])
-            )
-    print "adding " + closing['location']
-    session.add(cl)
-    session.commit()
+    row_exists = session.query(exists().where(Closing.location == closing['location'].rstrip())).scalar()
+
+    if row_exists:
+        print 'row exists'
+    if not row_exists:
+        closing_row = Closing(
+                end_date=closing['end_date'],
+                start_date=closing['start_date'],
+                location=closing['location'].rstrip(),
+                closing_type=closing['type'].rstrip(),
+                purpose=closing['purpose'].rstrip(),
+                start_time=start_time(closing['time']),
+                end_time=end_time(closing['time']),
+                geom=street_parser.geolocater(closing['location'])
+                )
+        print "adding " + closing['location']
+        session.add(closing_row)
+        session.commit()
 
 def start_time(time_str):
     if '24 hrs' in time_str:
@@ -44,3 +50,9 @@ def start_time(time_str):
 def end_time(time_str):
     if '24 hrs' in time_str:
         return datetime.time(23, 59, 59)
+
+def main():
+    import_closings(read_closings())
+
+if __name__ == '__main__':
+    main()
