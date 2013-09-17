@@ -31,7 +31,7 @@ You need:
 
 =======
 
-To start the server locally, run `python app.py` and visit 
+To start the server locally, run `python denver_streets.py` and visit 
 http://0.0.0.0:5000 in your browser
 
 =======
