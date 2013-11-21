@@ -1,12 +1,43 @@
 Denver Street Construction API
 ==============
 
-API for Denver Streets/Sidewalks closings
+API for Denver Streets/Sidewalks closings.
+
+Currently the way to look up street closings in Denver is to [browse through a PDF](www.denvergov.org/streetclosures)
+that's released biweekly. To search, the website instructs you to do the following:
+
+```
+If looking for a particular street, hit Ctrl + F to find it within the document
+```
+
+The API is to turns this:
+
+![](https://dl.dropboxusercontent.com/u/2372981/denverclosings.png)
+
+into this: 
+
+```javascript
+{
+  "end_date": "2014-07-01", 
+  "start_date": "2013-08-31", 
+  "geometry":
+     {
+      "type": "LineString", 
+      "coordinates": [[-104.9425648, 39.7114694], [-104.941355, 39.7114643]]
+     }, 
+     "start_time": "00:00:00", 
+     "end_time": "23:59:59", 
+     "purpose": "ROW Occupancy",
+     "closing_type": "Close Sidewalk", 
+     "id": 455, 
+     "location": "Alameda ave: Jackson st - Harrison st"
+}
+```
+
+and allow users to query for closings based on location, date, time, etc.
 
 Using
 ==============
-
-GET: `/`
 
 GET: `/closings`
 
@@ -16,11 +47,15 @@ GET: `/closings?on_date=YYYY-MM-DD`
 
 Returns a list of street closings on specific date
 
+TODO:
+
+GET: `/closings?location=`
+
+Return a list of street closings near a location.
+
+
 Development
 ==============
-Pivotal Tracker:
-https://www.pivotaltracker.com/projects/768887
-
 You need:
 * Python 2.7.3
 * Postgresql 9.1
